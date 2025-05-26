@@ -17,8 +17,16 @@ const Search = ({ onSearch }: SearchProps) => {
         placeholder="Type here to start TMDBing!"
         value={searchValue}
         onChange={(e) => setSearchValue(e.target.value)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            if (searchValue.trim()) {
+              onSearch(searchValue);
+            }
+          }
+        }}
       />
-      {searchValue && (
+      {searchValue.trim() && (
         <button
           onClick={() => onSearch(searchValue)}
           className="bg-indigo-500 text-white p-3 rounded-md hover:bg-indigo-400"
