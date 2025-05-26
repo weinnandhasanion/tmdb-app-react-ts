@@ -20,7 +20,7 @@ function App() {
     try {
       setError(false);
       setLoading(true);
-      setCurrentSearch(query);
+      setCurrentSearch(query.trim());
       const response = await TmdbApi.searchMovie(query, page);
 
       if (response.status === 200) {
